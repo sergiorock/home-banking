@@ -1,5 +1,7 @@
 //Declaración de variables
-
+nombreUsuario = "López Sergio";
+saldoCuenta = 15000;
+limiteExtraccion = 3000;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
@@ -43,4 +45,3 @@ function actualizarSaldoEnPantalla() {
 function actualizarLimiteEnPantalla() {
     document.getElementById("limite-extraccion").innerHTML = "Tu límite de extracción es: $" + limiteExtraccion;
 }
-
