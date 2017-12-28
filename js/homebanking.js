@@ -1,6 +1,7 @@
 //Declaración de variables
+codSeguridad = 2705;
 nombreUsuario = "López Sergio";
-saldoCuenta = 6000;
+saldoCuenta = 15000;
 limiteExtraccion = 3000;
 agua = 350;
 luz = 210;
@@ -8,6 +9,9 @@ internet = 570;
 telefono = 425;
 cuentaAmiga1 = 1234567;
 cuentaAmiga2 = 7654321;
+
+//Inicio de Sesion
+iniciarSesion();
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
@@ -27,9 +31,14 @@ var restarSaldo = function(dinero){
 //Funciones que tenes que completar
 function cambiarLimiteDeExtraccion() {
   nuevoLimite = prompt("Ingresar nuevo límite de extracción.");
-  limiteExtraccion = nuevoLimite;
-  actualizarLimiteEnPantalla();
-  alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
+  nuevoLimite = parseInt(nuevoLimite);
+  if (nuevoLimite >= 0){
+    limiteExtraccion = nuevoLimite;
+    actualizarLimiteEnPantalla();
+    alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
+  }else {
+    alert("Su límite de extracción no puede ser un número negativo.");
+  }
 }
 
 function extraerDinero() {
@@ -50,7 +59,7 @@ function extraerDinero() {
 }
 
 function depositarDinero() {
-  deposito = prompt("Ingrese la cantidad de dinero que desea depositar");
+  deposito = prompt("Ingrese la cantidad de dinero que desea depositar.");
   deposito = parseInt(deposito);
   saldoAnterior = saldoCuenta;
   sumarSaldo(deposito);
@@ -103,7 +112,7 @@ function pagarServicio() {
       }
       break;
     default:
-    alert("No existe el servicio que ha seleccionado");
+    alert("No existe el servicio que ha seleccionado.");
   }
 }
 
@@ -113,7 +122,7 @@ function transferirDinero() {
   if (monto > saldoCuenta){
     alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.")
   } else {
-    cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia")
+    cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia.")
     cuenta = parseInt(cuenta);
     if (cuenta === cuentaAmiga1 || cuenta === cuentaAmiga2){
       saldoCuenta -= monto;
@@ -126,7 +135,15 @@ function transferirDinero() {
 }
 
 function iniciarSesion() {
-
+  codCuenta = prompt("Ingrese el código de su cuenta");
+  codCuenta = parseInt(codCuenta);
+  if (codCuenta === codSeguridad) {
+    alert("Bienvenido " + nombreUsuario + " ya puedes comenzar a realizar operaciones.")
+  } else {
+    saldoCuenta = 0;
+    alert("Código incorrecto. Tu dinero se ha retenido por cuestiones de seguridad.")
+    actualizarSaldoEnPantalla();
+  }
 }
 
 //Funciones que actualizan el valor de las variables en el HTML
