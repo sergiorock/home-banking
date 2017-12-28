@@ -8,17 +8,39 @@ cargarNombreEnPantalla();
 actualizarSaldoEnPantalla();
 actualizarLimiteEnPantalla();
 
+//Funciones propias
+var sumarSaldo = function(dinero){
+  saldoCuenta += dinero;
+}
+
+var restarSaldo = function(dinero){
+  saldoCuenta -= dinero;
+}
+
 //Funciones que tenes que completar
 function cambiarLimiteDeExtraccion() {
-
+  nuevoLimite = prompt("Ingresar nuevo límite de extraccion");
+  limiteExtraccion = nuevoLimite;
+  actualizarLimiteEnPantalla();
+  alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
 }
 
 function extraerDinero() {
-
+  extraccion = prompt("Ingrese la cantidad de dinero que desea extraer");
+  extraccion = parseInt(extraccion);
+  saldoAnterior = saldoCuenta;
+  restarSaldo(extraccion);
+  actualizarSaldoEnPantalla();
+  alert("Saldo anterior: " + saldoAnterior + "\nExtracción: " + extraccion + "\nSaldo actual: " + saldoCuenta);
 }
 
 function depositarDinero() {
-
+  deposito = prompt("Ingrese la cantidad de dinero que desea depositar");
+  deposito = parseInt(deposito);
+  saldoAnterior = saldoCuenta;
+  sumarSaldo(deposito);
+  actualizarSaldoEnPantalla();
+  alert("Saldo anterior: " + saldoAnterior + "\nDepósito: " + deposito + "\nSaldo actual: " + saldoCuenta);
 }
 
 function pagarServicio() {
