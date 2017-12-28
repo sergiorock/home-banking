@@ -6,6 +6,8 @@ agua = 350;
 luz = 210;
 internet = 570;
 telefono = 425;
+cuentaAmiga1 = 1234567;
+cuentaAmiga2 = 7654321;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
@@ -102,12 +104,25 @@ function pagarServicio() {
       break;
     default:
     alert("No existe el servicio que ha seleccionado");
-
   }
 }
 
 function transferirDinero() {
-
+  monto = prompt("Ingrese el monto que desea transferir.")
+  monto = parseInt(monto);
+  if (monto > saldoCuenta){
+    alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.")
+  } else {
+    cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia")
+    cuenta = parseInt(cuenta);
+    if (cuenta === cuentaAmiga1 || cuenta === cuentaAmiga2){
+      saldoCuenta -= monto;
+      alert("Se han transferido $" + monto + "\nCuenta destino: " + cuenta);
+      actualizarSaldoEnPantalla();
+    } else {
+      alert("Solo puede realizar transferencias a cuentas amigas.")
+    }
+  }
 }
 
 function iniciarSesion() {
