@@ -1,8 +1,11 @@
 //Declaración de variables
 nombreUsuario = "López Sergio";
-saldoCuenta = 3000;
+saldoCuenta = 6000;
 limiteExtraccion = 3000;
-
+agua = 350;
+luz = 210;
+internet = 570;
+telefono = 425;
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
@@ -54,7 +57,53 @@ function depositarDinero() {
 }
 
 function pagarServicio() {
+  num = prompt("Ingrese el número que corresponda con el servicio que desea pagar \n1 - Agua \n2 - Luz \n3 - Internet \n4 - Teléfono")
+  num = parseInt(num);
+  switch (num) {
+    case 1:
+      if (saldoCuenta < agua) {
+        alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
+      } else {
+        saldoAnterior = saldoCuenta;
+        saldoCuenta -= agua;
+        alert("Has pagado el servicio Agua \nSaldo Anterior: " + saldoAnterior + "\nDinero descontado: " + agua + "\nSaldo actual: " + saldoCuenta);
+        actualizarSaldoEnPantalla();
+      }
+      break;
+    case 2:
+      if (saldoCuenta < luz) {
+        alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
+      } else {
+        saldoAnterior = saldoCuenta;
+        saldoCuenta -= luz;
+        alert("Has pagado el servicio Luz \nSaldo Anterior: " + saldoAnterior + "\nDinero descontado: " + luz + "\nSaldo actual: " + saldoCuenta);
+        actualizarSaldoEnPantalla();
+      }
+      break;
+    case 3:
+      if (saldoCuenta < internet) {
+        alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
+      } else {
+        saldoAnterior = saldoCuenta;
+        saldoCuenta -= internet;
+        alert("Has pagado el servicio Internet \nSaldo Anterior: " + saldoAnterior + "\nDinero descontado: " + internet + "\nSaldo actual: " + saldoCuenta);
+        actualizarSaldoEnPantalla();
+      }
+      break;
+    case 4:
+      if (saldoCuenta < telefono) {
+        alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
+      } else {
+        saldoAnterior = saldoCuenta;
+        saldoCuenta -= telefono;
+        alert("Has pagado el servicio Teléfono \nSaldo Anterior: " + saldoAnterior + "\nDinero descontado: " + telefono + "\nSaldo actual: " + saldoCuenta);
+        actualizarSaldoEnPantalla();
+      }
+      break;
+    default:
+    alert("No existe el servicio que ha seleccionado");
 
+  }
 }
 
 function transferirDinero() {
