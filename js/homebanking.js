@@ -125,7 +125,7 @@ function depositarDinero() {
       actualizarSaldoEnPantalla();
       alert("Saldo anterior: " + saldoAnterior + "\nDepósito: " + deposito + "\nSaldo actual: " + saldoCuenta);
     }else {
-      alert("Número no válido")
+      alert("Operación no valida. Ingrese un monto mayor a 0")
     }
   }
 }
@@ -192,7 +192,7 @@ function transferirDinero() {
   }else {
     monto = parseInt(monto);
     if (esPositivo(monto) == false) {
-      alert("Monto inválido");
+      alert("Operación no valida. Ingrese un monto mayor a 0");
     }else if (esMayorQue(monto, saldoCuenta)){
       alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.");
     }else {
