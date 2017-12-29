@@ -32,19 +32,21 @@ var restarSaldo = function(dinero){
 function cambiarLimiteDeExtraccion() {
   nuevoLimite = prompt("Ingresar nuevo límite de extracción.");
   nuevoLimite = parseInt(nuevoLimite);
-  if (nuevoLimite >= 0){
+  if (nuevoLimite > 0){
     limiteExtraccion = nuevoLimite;
     actualizarLimiteEnPantalla();
     alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
   }else {
-    alert("Su límite de extracción no puede ser un número negativo.");
+    alert("El límite de extracción debe ser mayor a 0.");
   }
 }
 
 function extraerDinero() {
   extraccion = prompt("Ingrese la cantidad de dinero que desea extraer.");
   extraccion = parseInt(extraccion);
-  if (extraccion > limiteExtraccion){
+    if (extraccion <= 0) {
+      alert("Número no válido.")
+  } else if (extraccion > limiteExtraccion){
     alert("La cantidad de dinero que deseas extraer es mayor a tu límite de extracción.")
   } else if (extraccion % 100 !== 0){
     alert("Solo puedes extraer billetes de 100.");
@@ -61,10 +63,14 @@ function extraerDinero() {
 function depositarDinero() {
   deposito = prompt("Ingrese la cantidad de dinero que desea depositar.");
   deposito = parseInt(deposito);
-  saldoAnterior = saldoCuenta;
-  sumarSaldo(deposito);
-  actualizarSaldoEnPantalla();
-  alert("Saldo anterior: " + saldoAnterior + "\nDepósito: " + deposito + "\nSaldo actual: " + saldoCuenta);
+  if (deposito > 0) {
+    saldoAnterior = saldoCuenta;
+    sumarSaldo(deposito);
+    actualizarSaldoEnPantalla();
+    alert("Saldo anterior: " + saldoAnterior + "\nDepósito: " + deposito + "\nSaldo actual: " + saldoCuenta);
+  }else {
+    alert("Número no válido")
+  }
 }
 
 function pagarServicio() {
@@ -119,7 +125,9 @@ function pagarServicio() {
 function transferirDinero() {
   monto = prompt("Ingrese el monto que desea transferir.")
   monto = parseInt(monto);
-  if (monto > saldoCuenta){
+  if (monto <= 0) {
+    alert("Monto inválido");
+  }else if (monto > saldoCuenta){
     alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.")
   } else {
     cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia.")
