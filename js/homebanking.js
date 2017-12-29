@@ -12,8 +12,6 @@ cuentaAmiga2 = 7654321;
 visa = 6000;
 master = 4500;
 
-//Inicio de Sesión
-//iniciarSesion();
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
@@ -73,7 +71,7 @@ function esNull (x){
 
 //Funciones que tenes que completar
 //INICIAR SESIÓN
-function iniciarSesion() {
+/*function iniciarSesion() {
   codCuenta = prompt("Ingrese el código de su cuenta");
   codCuenta = parseInt(codCuenta);
   if (codCuenta === codSeguridad) {
@@ -84,7 +82,7 @@ function iniciarSesion() {
     actualizarSaldoEnPantalla();
   }
 }
-
+*/
 
 //EXTRAER
 function extraerDinero() {
