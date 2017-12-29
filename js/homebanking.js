@@ -13,7 +13,7 @@ visa = 6000;
 master = 4500;
 
 //Inicio de Sesión
-iniciarSesion();
+//iniciarSesion();
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
 cargarNombreEnPantalla();
