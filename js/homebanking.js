@@ -10,7 +10,7 @@ telefono = 425;
 cuentaAmiga1 = 1234567;
 cuentaAmiga2 = 7654321;
 
-//Inicio de Sesion
+//Inicio de Sesión
 iniciarSesion();
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML
@@ -18,21 +18,52 @@ cargarNombreEnPantalla();
 actualizarSaldoEnPantalla();
 actualizarLimiteEnPantalla();
 
-//Funciones propias
-var sumarSaldo = function(dinero){
+//Funciones
+function sumarSaldo(dinero){
   saldoCuenta += dinero;
 }
 
-var restarSaldo = function(dinero){
+function restarSaldo(dinero){
   saldoCuenta -= dinero;
 }
 
+function haySaldoDisponible (num) {
+  if (saldoCuenta >= num) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function esPositivo (num) {
+  if (num > 0) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function esMenorQue (x, y){
+  if (x < y) {
+    return true;
+  }else {
+    return false;
+  }
+}
+
+function esMayorQue (x, y){
+  if (x > y) {
+    return true;
+  }else {
+    return false;
+  }
+}
 
 //Funciones que tenes que completar
 function cambiarLimiteDeExtraccion() {
   nuevoLimite = prompt("Ingresar nuevo límite de extracción.");
   nuevoLimite = parseInt(nuevoLimite);
-  if (nuevoLimite > 0){
+  if (esPositivo(nuevoLimite) == true) {
     limiteExtraccion = nuevoLimite;
     actualizarLimiteEnPantalla();
     alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
@@ -44,26 +75,28 @@ function cambiarLimiteDeExtraccion() {
 function extraerDinero() {
   extraccion = prompt("Ingrese la cantidad de dinero que desea extraer.");
   extraccion = parseInt(extraccion);
-    if (extraccion <= 0) {
-      alert("Número no válido.")
-  } else if (extraccion > limiteExtraccion){
-    alert("La cantidad de dinero que deseas extraer es mayor a tu límite de extracción.")
-  } else if (extraccion % 100 !== 0){
-    alert("Solo puedes extraer billetes de 100.");
-  } else if (extraccion > saldoCuenta){
-    alert("No hay saldo disponible en tu cuenta para extraer esa cantidad de dinero.")
-  } else {
-  saldoAnterior = saldoCuenta;
-  restarSaldo(extraccion);
-  actualizarSaldoEnPantalla();
-  alert("Saldo anterior: " + saldoAnterior + "\nExtracción: " + extraccion + "\nSaldo actual: " + saldoCuenta);
-}
+  if (haySaldoDisponible(extraccion) == true) {
+    if (esPositivo(extraccion) == false) {
+      alert("Operación no valida. Ingrese un monto mayor a 0")
+    }else if (esMayorQue(extraccion, limiteExtraccion) == true) {
+      alert("La cantidad de dinero que deseas extraer es mayor a tu límite de extracción.");
+    }else if (extraccion % 100 !== 0) {
+      alert("Solo puedes extraer billetes de 100.");
+    }else {
+      saldoAnterior = saldoCuenta;
+      restarSaldo(extraccion);
+      actualizarSaldoEnPantalla();
+      alert("Saldo anterior: " + saldoAnterior + "\nExtracción: " + extraccion + "\nSaldo actual: " + saldoCuenta);
+    }
+  }else {
+    alert("No hay saldo disponible en tu cuenta para extraer esa cantidad de dinero.");
+  }
 }
 
 function depositarDinero() {
   deposito = prompt("Ingrese la cantidad de dinero que desea depositar.");
   deposito = parseInt(deposito);
-  if (deposito > 0) {
+  if (esPositivo(deposito) == true) {
     saldoAnterior = saldoCuenta;
     sumarSaldo(deposito);
     actualizarSaldoEnPantalla();
@@ -78,7 +111,7 @@ function pagarServicio() {
   num = parseInt(num);
   switch (num) {
     case 1:
-      if (saldoCuenta < agua) {
+      if (esMenorQue(saldoCuenta, agua) == true) {
         alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
       } else {
         saldoAnterior = saldoCuenta;
@@ -88,7 +121,7 @@ function pagarServicio() {
       }
       break;
     case 2:
-      if (saldoCuenta < luz) {
+      if (esMenorQue(saldoCuenta, luz) == true) {
         alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
       } else {
         saldoAnterior = saldoCuenta;
@@ -98,7 +131,7 @@ function pagarServicio() {
       }
       break;
     case 3:
-      if (saldoCuenta < internet) {
+      if (esMenorQue(saldoCuenta, internet) == true) {
         alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
       } else {
         saldoAnterior = saldoCuenta;
@@ -108,7 +141,7 @@ function pagarServicio() {
       }
       break;
     case 4:
-      if (saldoCuenta < telefono) {
+      if (esMenorQue(saldoCuenta, telefono) == true) {
         alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
       } else {
         saldoAnterior = saldoCuenta;
@@ -125,9 +158,9 @@ function pagarServicio() {
 function transferirDinero() {
   monto = prompt("Ingrese el monto que desea transferir.")
   monto = parseInt(monto);
-  if (monto <= 0) {
+  if (esPositivo(monto) == false) {
     alert("Monto inválido");
-  }else if (monto > saldoCuenta){
+  }else if (esMayorQue(monto, saldoCuenta)){
     alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.")
   } else {
     cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia.")
