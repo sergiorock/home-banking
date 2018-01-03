@@ -70,8 +70,6 @@ function esNull (x){
 }
 
 
-
-//Funciones que tenes que completar
 //INICIAR SESIÓN
 function iniciarSesion() {
   codCuenta = prompt("Ingrese el código de su cuenta");
@@ -89,14 +87,14 @@ function iniciarSesion() {
 //EXTRAER
 function extraerDinero() {
   extraccion = prompt("Ingrese la cantidad de dinero que desea extraer.");
-  if (esNull(extraccion) == true) {
+  if (esNull(extraccion)) {
     return;
   }else {
     extraccion = parseInt(extraccion);
-    if (haySaldoDisponible(extraccion) == true) {
+    if (haySaldoDisponible(extraccion)) {
       if (esPositivo(extraccion) == false) {
       alert("Operación no valida. Ingrese un monto mayor a 0")
-      }else if (esMayorQue(extraccion, limiteExtraccion) == true) {
+      }else if (esMayorQue(extraccion, limiteExtraccion)) {
       alert("La cantidad de dinero que deseas extraer es mayor a tu límite de extracción.");
       }else if (extraccion % 100 !== 0) {
       alert("Solo puedes extraer billetes de 100.");
@@ -115,11 +113,11 @@ function extraerDinero() {
 //DEPOSITAR
 function depositarDinero() {
   deposito = prompt("Ingrese la cantidad de dinero que desea depositar.");
-  if (esNull(deposito) == true) {
+  if (esNull(deposito)) {
     return;
   }else {
     deposito = parseInt(deposito);
-    if (esPositivo(deposito) == true) {
+    if (esPositivo(deposito)) {
       saldoAnterior = saldoCuenta;
       sumarSaldo(deposito);
       actualizarSaldoEnPantalla();
@@ -133,13 +131,13 @@ function depositarDinero() {
 //PAGAR SERVICIOS
 function pagarServicio() {
   num = prompt("Ingrese el número que corresponda con el servicio que desea pagar \n1 - Agua \n2 - Luz \n3 - Internet \n4 - Teléfono")
-  if (esNull(num) == true) {
+  if (esNull(num)) {
     return;
   }else {
     num = parseInt(num);
     switch (num) {
       case 1:
-        if (esMenorQue(saldoCuenta, agua) == true) {
+        if (esMenorQue(saldoCuenta, agua)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -149,7 +147,7 @@ function pagarServicio() {
         }
         break;
       case 2:
-        if (esMenorQue(saldoCuenta, luz) == true) {
+        if (esMenorQue(saldoCuenta, luz)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -159,7 +157,7 @@ function pagarServicio() {
         }
         break;
       case 3:
-        if (esMenorQue(saldoCuenta, internet) == true) {
+        if (esMenorQue(saldoCuenta, internet)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -169,7 +167,7 @@ function pagarServicio() {
         }
         break;
       case 4:
-        if (esMenorQue(saldoCuenta, telefono) == true) {
+        if (esMenorQue(saldoCuenta, telefono)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar este servicio.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -187,7 +185,7 @@ function pagarServicio() {
 //TRANSFERIR
 function transferirDinero() {
   monto = prompt("Ingrese el monto que desea transferir.")
-  if(esNull(monto) == true) {
+  if(esNull(monto)) {
     return;
   }else {
     monto = parseInt(monto);
@@ -197,7 +195,7 @@ function transferirDinero() {
       alert("No puede transferir esa cantidad de dinero, su saldo es insuficiente.");
     }else {
       cuenta = prompt("ingrese número de cuenta a la cual desea hacer un transferencia.");
-      if (esNull(cuenta) == true) {
+      if (esNull(cuenta)) {
         return;
       }else {
         cuenta = parseInt(cuenta);
@@ -216,13 +214,13 @@ function transferirDinero() {
 //PAGAR TARJETAS
 function pagarTarjetas() {
   num = prompt("¿Qué tarjeta de crédito desea pagar? \n1 - Visa \n2 - Mastercard");
-  if (esNull(num) == true) {
+  if (esNull(num)) {
     return;
   }else {
     num = parseInt(num);
     switch (num) {
       case 1:
-        if (esMenorQue(saldoCuenta, visa) == true) {
+        if (esMenorQue(saldoCuenta, visa)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar esta tarjeta.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -232,7 +230,7 @@ function pagarTarjetas() {
         }
         break;
       case 2:
-        if (esMenorQue(saldoCuenta, master) == true) {
+        if (esMenorQue(saldoCuenta, master)) {
           alert("No hay sufuciente saldo en tu cuenta para pagar esta tarjeta.")
         } else {
           saldoAnterior = saldoCuenta;
@@ -250,11 +248,11 @@ function pagarTarjetas() {
 //CAMBIAR LIMITE DE EXTRACCIÓN
 function cambiarLimiteDeExtraccion() {
   nuevoLimite = prompt("Ingresar nuevo límite de extracción.");
-  if (esNull(nuevoLimite) == true) {
+  if (esNull(nuevoLimite)) {
     return
   }else {
     nuevoLimite = parseInt(nuevoLimite);
-    if (esPositivo(nuevoLimite) == true) {
+    if (esPositivo(nuevoLimite)) {
     limiteExtraccion = nuevoLimite;
     actualizarLimiteEnPantalla();
     alert("Su nuevo límite de extracción es: $ " + limiteExtraccion);
